@@ -1,0 +1,2 @@
+[console_scripts]
+sentinel = src.cli.app:main

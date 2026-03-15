@@ -1,0 +1,7 @@
+rich
+typer
+requests
+python-owasp-zap-v2.4
+python-dotenv
+python-nmap
+sslyze
