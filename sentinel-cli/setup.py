@@ -4,6 +4,7 @@ setup(
     name="sentinel",
     version="0.1.0",
     packages=find_packages(),
+    py_modules=["sentinel_cli"],
     install_requires=[
         "rich",
         "typer",
@@ -15,7 +16,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "sentinel=src.cli.app:main",
+            "sentinel=sentinel_cli:main",
         ],
     },
 )
