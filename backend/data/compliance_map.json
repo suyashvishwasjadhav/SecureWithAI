@@ -1,0 +1,92 @@
+{
+  "SQL Injection": {
+    "owasp": "A03:Injection",
+    "pci_dss": ["Req 6.5.1"],
+    "hipaa": ["164.306(a)", "164.312(a)(1)"],
+    "gdpr": ["Art 32"]
+  },
+  "Cross-Site Scripting": {
+    "owasp": "A03:Injection",
+    "pci_dss": ["Req 6.5.7"],
+    "hipaa": ["164.306(a)"],
+    "gdpr": ["Art 32"]
+  },
+  "Path Traversal": {
+    "owasp": "A01:Broken Access Control",
+    "pci_dss": ["Req 6.5.8"],
+    "hipaa": ["164.312(a)(1)"],
+    "gdpr": ["Art 32"]
+  },
+  "Hardcoded Secret": {
+    "owasp": "A02:Cryptographic Failures",
+    "pci_dss": ["Req 6.5.3", "Req 8.2.1"],
+    "hipaa": ["164.312(a)(2)(i)", "164.312(d)"],
+    "gdpr": ["Art 32"]
+  },
+  "Server-Side Request Forgery": {
+    "owasp": "A10:Server-Side Request Forgery",
+    "pci_dss": ["Req 6.5.6"],
+    "hipaa": ["164.312(a)(1)"],
+    "gdpr": ["Art 32"]
+  },
+  "Code Injection": {
+    "owasp": "A03:Injection",
+    "pci_dss": ["Req 6.5.1"],
+    "hipaa": ["164.306(a)"],
+    "gdpr": ["Art 32"]
+  },
+  "Weak Cryptography": {
+    "owasp": "A02:Cryptographic Failures",
+    "pci_dss": ["Req 4.1", "Req 6.5.3"],
+    "hipaa": ["164.312(e)(1)", "164.312(e)(2)(i)"],
+    "gdpr": ["Art 32(1)(a)"]
+  },
+  "Insecure Direct Object Reference": {
+    "owasp": "A01:Broken Access Control",
+    "pci_dss": ["Req 6.5.8"],
+    "hipaa": ["164.312(a)(1)"],
+    "gdpr": ["Art 32"]
+  },
+  "Broken Authentication": {
+    "owasp": "A07:Identification Failures",
+    "pci_dss": ["Req 8.1.1", "Req 8.2"],
+    "hipaa": ["164.312(d)"],
+    "gdpr": ["Art 32"]
+  },
+  "Security Misconfiguration": {
+    "owasp": "A05:Security Misconfiguration",
+    "pci_dss": ["Req 2.2"],
+    "hipaa": ["164.308(a)(1)(ii)(B)"],
+    "gdpr": ["Art 32"]
+  },
+  "XML External Entities (XXE)": {
+    "owasp": "A05:Security Misconfiguration",
+    "pci_dss": ["Req 6.5.2"],
+    "hipaa": ["164.306(a)"],
+    "gdpr": ["Art 32"]
+  },
+  "Cross-Site Request Forgery": {
+    "owasp": "A01:Broken Access Control",
+    "pci_dss": ["Req 6.5.9"],
+    "hipaa": ["164.312(a)(1)"],
+    "gdpr": ["Art 32"]
+  },
+  "Missing Security Headers": {
+    "owasp": "A05:Security Misconfiguration",
+    "pci_dss": ["Req 2.2", "Req 4.1"],
+    "hipaa": ["164.312(e)(1)"],
+    "gdpr": ["Art 32"]
+  },
+  "Unvalidated Redirects and Forwards": {
+    "owasp": "A01:Broken Access Control",
+    "pci_dss": ["Req 6.5.8"],
+    "hipaa": ["164.312(a)(1)"],
+    "gdpr": ["Art 32"]
+  },
+  "Insufficient Logging & Monitoring": {
+    "owasp": "A09:Logging Failures",
+    "pci_dss": ["Req 10.1", "Req 10.2", "Req 10.3"],
+    "hipaa": ["164.312(b)"],
+    "gdpr": ["Art 32"]
+  }
+}

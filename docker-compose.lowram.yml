@@ -1,0 +1,11 @@
+# Low-RAM hosts (~8GB or less): do not start ZAP by default (saves several GB of Java heap).
+#
+#   docker compose -f docker-compose.yml -f docker-compose.ollama.yml -f docker-compose.lowram.yml up -d
+#
+# URL scans that need ZAP will fail until you run with the zap profile:
+#   docker compose --profile zap ... up -d
+
+services:
+  zap:
+    profiles:
+      - zap

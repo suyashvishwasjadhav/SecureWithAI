@@ -1,0 +1,61 @@
+{
+  "SQL Injection": {
+    "min": 10000,
+    "max": 2000000,
+    "examples": [
+      {"company": "Equifax (2017)", "loss": "$575M", "detail": "SQL injection contributed to largest US data breach"},
+      {"company": "Heartland Payment (2008)", "loss": "$140M", "detail": "SQL injection exposed 130M credit cards"}
+    ]
+  },
+  "Cross Site Scripting (Reflected)": {
+    "min": 5000,
+    "max": 500000,
+    "examples": [
+      {"company": "British Airways (2018)", "loss": "$230M fine", "detail": "XSS used to steal 500K payment card details"},
+      {"company": "eBay (2015)", "loss": "$200M reputation", "detail": "Stored XSS allowed account takeovers"}
+    ]
+  },
+  "Path Traversal": {
+    "min": 50000,
+    "max": 5000000,
+    "examples": [
+      {"company": "Accellion (2021)", "loss": "$8.1M", "detail": "Path traversal exposed files from 100+ organizations"}
+    ]
+  },
+  "Server Side Request Forgery": {
+    "min": 200000,
+    "max": 100000000,
+    "examples": [
+      {"company": "Capital One (2019)", "loss": "$80M fine", "detail": "SSRF used to access AWS metadata and steal credentials — 100M records exposed"}
+    ]
+  },
+  "Hardcoded Secret": {
+    "min": 5000,
+    "max": 10000000,
+    "examples": [
+      {"company": "Toyota (2023)", "loss": "$Unknown", "detail": "Hardcoded API key exposed 296K customer records"},
+      {"company": "Uber (2022)", "loss": "$148M", "detail": "Hardcoded credentials led to full AWS access"}
+    ]
+  },
+  "Insecure HTTP Method": {
+    "min": 50000,
+    "max": 10000000,
+    "examples": [
+      {"company": "Multiple webdav servers", "loss": "Varies", "detail": "PUT method allowed arbitrary file upload and code execution"}
+    ]
+  },
+  "Cookie Without Secure Flag": {
+    "min": 5000,
+    "max": 500000,
+    "examples": [
+      {"company": "Various (ongoing)", "loss": "$5K-$500K", "detail": "Session hijacking via unencrypted cookie transmission"}
+    ]
+  },
+  "Missing Anti-Clickjacking Header": {
+    "min": 10000,
+    "max": 1000000,
+    "examples": [
+      {"company": "Facebook (2009)", "loss": "Millions affected", "detail": "Clickjacking attack forced users to like pages without consent"}
+    ]
+  }
+}

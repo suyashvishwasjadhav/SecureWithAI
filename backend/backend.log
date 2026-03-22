@@ -1,0 +1,34 @@
+INFO:     Will watch for changes in these directories: ['/Users/macm2/Downloads/untitled folder/shieldssentinel/backend']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [42199] using WatchFiles
+/Users/macm2/Downloads/untitled folder/shieldssentinel/venv/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.6.3) or chardet (7.2.0)/charset_normalizer (3.4.6) doesn't match a supported version!
+  warnings.warn(
+INFO:     Started server process [42206]
+INFO:     Waiting for application startup.
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:53255 - "GET /api/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53255 - "GET /api/dashboard HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53258 - "GET /api/dashboard HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53265 - "GET /api/dashboard HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53267 - "GET /api/dashboard HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53267 - "OPTIONS /api/scans/3055d94f-3aa9-46f7-86e7-7e15f1587460 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53267 - "DELETE /api/scans/3055d94f-3aa9-46f7-86e7-7e15f1587460 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53267 - "OPTIONS /api/scans/ed907965-4efb-4cda-bb80-2ed89a5bc62e HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53267 - "DELETE /api/scans/ed907965-4efb-4cda-bb80-2ed89a5bc62e HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53272 - "OPTIONS /api/ide/clone HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53272 - "POST /api/ide/clone HTTP/1.1" 200 OK
+INFO:     ('127.0.0.1', 53280) - "WebSocket /ws/ide/bff57b0e-fc8e-4dcb-923d-8518e11805ba" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:53272 - "GET /api/ide/bff57b0e-fc8e-4dcb-923d-8518e11805ba HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53278 - "GET /api/ide/bff57b0e-fc8e-4dcb-923d-8518e11805ba/findings HTTP/1.1" 200 OK
+INFO:     ('127.0.0.1', 53282) - "WebSocket /ws/ide/bff57b0e-fc8e-4dcb-923d-8518e11805ba" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:53294 - "GET /api/ide/bff57b0e-fc8e-4dcb-923d-8518e11805ba/findings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53293 - "GET /api/ide/bff57b0e-fc8e-4dcb-923d-8518e11805ba HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'services/github_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     connection closed
+INFO:     connection closed
+INFO:     Waiting for background tasks to complete. (CTRL+C to force quit)
