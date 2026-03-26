@@ -150,9 +150,9 @@ def show_findings(results):
         console.print(
             f"        [dim]{finding['endpoint'][:70]}[/dim]"
         )
-        if finding["parameter"]:
+        if finding.get("parameter"):
             console.print(
-                f"        [dim]param: {finding['parameter']}[/dim]"
+                f"        [dim]param: {finding.get('parameter')}[/dim]"
             )
 
     console.print()

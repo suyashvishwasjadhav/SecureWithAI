@@ -226,6 +226,7 @@ def run_scan_with_ui(url):
             on_active_progress=on_active_progress,
             on_active_done=on_active_done,
             on_finding=on_finding,
+            console=console, 
         )
 
     return results

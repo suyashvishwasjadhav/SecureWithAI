@@ -1,6 +1,9 @@
 import time
 import requests
 from datetime import datetime
+from src.attack.nikto_scanner import run_nikto
+from src.attack.exposure import check_exposure
+from src.utils.cleaner import build_clean_report
 
 ZAP_BASE = "http://127.0.0.1:8080"
 
@@ -17,11 +20,12 @@ def run_zap_scan_live(
     on_active_progress=None,
     on_active_done=None,
     on_finding=None,
+    console=None,
 ):
     # Test connection
     version = zap_get("core/view/version")["version"]
 
-    # Step 1 — Seed URLs manually (Juice Shop is JS-heavy, regular spider finds little)
+    # Step 1 — Seed URLs
     seed_urls = [
         target_url,
         f"{target_url}/rest/user/login",
@@ -78,7 +82,7 @@ def run_zap_scan_live(
     if on_passive_done:
         on_passive_done()
 
-    # Step 4 — Seed more URLs directly before active scan
+    # Step 4 — Re-seed before active scan
     for seed_url in seed_urls:
         try:
             zap_get("core/action/accessUrl", {
@@ -101,7 +105,6 @@ def run_zap_scan_live(
     })
 
     if "scan" not in ascan:
-        # Try scanning a specific seeded URL instead
         ascan = zap_get("ascan/action/scan", {
             "url": f"{target_url}/rest/user/login",
             "recurse": "true",
@@ -120,7 +123,6 @@ def run_zap_scan_live(
         if on_active_progress:
             on_active_progress(status)
 
-        # Stream findings in real time
         if on_finding:
             try:
                 alerts = zap_get("core/view/alerts", {"baseurl": target_url})["alerts"]
@@ -144,12 +146,12 @@ def run_zap_scan_live(
     if on_active_done:
         on_active_done()
 
-    # Final full results
+    # Step 6 — Collect ZAP alerts
     alerts = zap_get("core/view/alerts", {"baseurl": target_url})["alerts"]
-    findings = []
+    zap_findings = []
     for i, alert in enumerate(alerts):
-        findings.append({
-            "id":           f"f{i+1:03d}",
+        zap_findings.append({
+            "id":           f"z{i+1:03d}",
             "tool":         "zap",
             "vuln_type":    alert.get("name", "Unknown"),
             "severity":     alert.get("risk", "Informational"),
@@ -163,22 +165,35 @@ def run_zap_scan_live(
             "cweid":        alert.get("cweid", ""),
         })
 
+    # Step 7 — Run exposure check
+    exposure_findings = check_exposure(target_url, console=console)
+
+    # Step 8 — Run Nikto
+    nikto_findings = run_nikto(target_url, console=console)
+
+    # Step 9 — Merge all findings
+    all_findings = zap_findings + exposure_findings + nikto_findings
+
+    # Step 10 — Sort merged findings
     severity_order = {"High": 0, "Medium": 1, "Low": 2, "Informational": 3}
-    findings.sort(key=lambda x: severity_order.get(x["severity"], 4))
+    all_findings.sort(key=lambda x: severity_order.get(x["severity"], 4))
 
     summary = {
-        "High":          sum(1 for f in findings if f["severity"] == "High"),
-        "Medium":        sum(1 for f in findings if f["severity"] == "Medium"),
-        "Low":           sum(1 for f in findings if f["severity"] == "Low"),
-        "Informational": sum(1 for f in findings if f["severity"] == "Informational"),
+        "High":          sum(1 for f in all_findings if f["severity"] == "High"),
+        "Medium":        sum(1 for f in all_findings if f["severity"] == "Medium"),
+        "Low":           sum(1 for f in all_findings if f["severity"] == "Low"),
+        "Informational": sum(1 for f in all_findings if f["severity"] == "Informational"),
     }
 
-    return {
+    raw_results = {
         "scan_id":        f"scan_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
         "target_url":     target_url,
         "scanned_at":     datetime.now().isoformat(),
-        "tool":           f"OWASP ZAP {version}",
-        "total_findings": len(findings),
+        "tool":           f"ZAP {version} + Nikto + Exposure",
+        "total_findings": len(all_findings),
         "summary":        summary,
-        "findings":       findings,
+        "findings":       all_findings,
     }
+
+    # Step 11 — Clean and deduplicate
+    return build_clean_report(raw_results)
