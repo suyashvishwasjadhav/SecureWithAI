@@ -1,6 +1,45 @@
 # SecureWithAI / ShieldSentinel — Comprehensive Project Report
 
+[Table of contents](#table-of-contents)
+
 This document describes the **SecureWithAI** repository: a full-stack security assessment product branded **ShieldSentinel** in the UI and API. It covers repository layout, user navigation, authentication, REST and WebSocket behavior, asynchronous scanning pipelines, scanner tooling, operations, and data evolution.
+
+## Table of contents
+
+Use the links below to jump to a section (works in GitHub, VS Code / Cursor Markdown preview, and most Markdown viewers).
+
+### Main sections
+
+- [1. Product and technology stack](#1-product-and-technology-stack)
+- [2. Repository directory map](#2-repository-directory-map)
+- [3. User navigation and routes](#3-user-navigation-and-routes)
+- [4. Authentication and authorization](#4-authentication-and-authorization)
+- [5. Backend API surface (routers)](#5-backend-api-surface-routers)
+- [6. Scan pipeline, workers, and real-time updates](#6-scan-pipeline-workers-and-real-time-updates)
+- [7. Data model (summary)](#7-data-model-summary)
+- [8. Scanner and security capabilities inventory](#8-scanner-and-security-capabilities-inventory)
+- [9. Frontend features and user procedures](#9-frontend-features-and-user-procedures)
+- [10. Operations and configuration](#10-operations-and-configuration)
+- [11. Diagrams (reference)](#11-diagrams-reference)
+- [12. Completeness note](#12-completeness-note)
+
+### Subsections
+
+| § | Topic | Link |
+|---|--------|------|
+| 2.1 | High-level areas | [→](#21-high-level-areas) |
+| 2.2 | Appendix — source directories | [→](#22-appendix-source-directories-excludes-node_modules-dist-__pycache__) |
+| 3.1 | React routes | [→](#31-react-routes) |
+| 3.2 | API client and dev proxy | [→](#32-api-client-and-dev-proxy) |
+| 4.1–4.3 | Auth mechanism, API table, sequence diagram | [→](#41-mechanism) · [→](#42-auth-api-summary) · [→](#43-diagram-authentication-sequence) |
+| 5.1–5.10 | Dashboard … WebSockets | [→](#51-dashboard) · [→](#52-scans) · [→](#53-chat-on-scans-router) · [→](#54-recon-on-scans-router) · [→](#55-findings) · [→](#56-reports) · [→](#57-ide) · [→](#58-settings) · [→](#59-system-health-in-mainpy-not-v1-router-file) · [→](#510-websockets-in-mainpy) |
+| 6.1–6.4 | Pipeline, attacks, diagrams | [→](#61-entry-points-and-celery-tasks) · [→](#62-attack-selection) · [→](#63-diagram-scan-and-real-time-pipeline) · [→](#64-diagram-celery-queues-and-compose-workers) |
+| 8.1–8.5 | Scanner categories | [→](#81-sast-secrets-dependencies-static-analysis) · [→](#82-dast-fuzzing-active-tooling) · [→](#83-recon-and-fingerprinting) · [→](#84-visual-automation-helpers) · [→](#85-ai-and-reporting-packages) |
+| 9.1–9.3 | Marketing, app pages, cross-page features | [→](#91-marketing) · [→](#92-application-pages) · [→](#93-cross-page-and-embedded-features) |
+| 10.1–10.6 | Docker, nginx, beat, env, scripts, tests | [→](#101-running-locally-docker) · [→](#102-nginx-gateway) · [→](#103-celery-beat) · [→](#104-environment-variables-representative) · [→](#105-scripts-backendscripts) · [→](#106-automated-tests) |
+| 11.1–11.3 | Deployment, routes, journey diagrams | [→](#111-deployment-topology) · [→](#112-frontend-route-map) · [→](#113-typical-user-journey) |
+
+*Anchors follow common GitHub / VS Code Markdown preview rules. If a link does not jump in another viewer, open the outline/sidebar or search for the `§` heading text.*
 
 ---
 
